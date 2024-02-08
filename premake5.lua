@@ -97,17 +97,13 @@ function ApplyNumber(param)
     end
 end
 
-if GetParam("build-lua") then
-    BUILD_LUA = true
-elseif GetParam("no-build-lua") then
-    BUILD_LUA = false
-end
+BUILD_LUA = false
 if not BUILD_LUA then
     -- at most times you need to change this if you change BUILD_LUA to false
     -- make sure your lua lib is built with C++ and version >= 5.3
-    LUA_INCLUDE_DIR = GetParam("lua-include-dir") or "/usr/local/include/lua"
-    LUA_LIB_DIR = GetParam("lua-lib-dir") or "/usr/local/lib"
-    LUA_LIB_NAME = GetParam("lua-lib-name")
+    LUA_INCLUDE_DIR = GetParam("lua-include-dir") or "/usr/include/lua5.3"
+    LUA_LIB_DIR = GetParam("lua-lib-dir") or "/usr/lib/x86_64-linux-gnu"
+    LUA_LIB_NAME = "lua"
 end
 
 if GetParam("lua-deb") then
@@ -152,14 +148,11 @@ if not BUILD_SQLITE then
     SQLITE_LIB_DIR = GetParam("sqlite-lib-dir") or "/usr/local/lib"
 end
 
-if GetParam("build-irrlicht") then
-    BUILD_IRRLICHT = true
-elseif GetParam("no-build-irrlicht") then
-    BUILD_IRRLICHT = false
-end
+
+BUILD_IRRLICHT = false
 if not BUILD_IRRLICHT then
-    IRRLICHT_INCLUDE_DIR = GetParam("irrlicht-include-dir") or "/usr/local/include/irrlicht"
-    IRRLICHT_LIB_DIR = GetParam("irrlicht-lib-dir") or "/usr/local/lib"
+    IRRLICHT_INCLUDE_DIR = GetParam("irrlicht-include-dir") or "../3rdParty/irrlicht_1.8/include"
+    IRRLICHT_LIB_DIR = GetParam("irrlicht-lib-dir") or "../3rdParty/irrlicht_1.8/lib/Linux"
 end
 
 if GetParam("use-irrklang") then
@@ -168,16 +161,9 @@ elseif GetParam("no-use-irrklang") then
     USE_IRRKLANG = false
 end
 if USE_IRRKLANG then
-    IRRKLANG_INCLUDE_DIR = GetParam("irrklang-include-dir") or "../irrklang/include"
-    if os.istarget("windows") then
-        IRRKLANG_LIB_DIR = "../irrklang/lib/Win32-visualStudio"
-    elseif os.istarget("linux") then
-        IRRKLANG_LIB_DIR = "../irrklang/bin/linux-gcc-64"
-        IRRKLANG_LINK_RPATH = "-Wl,-rpath=./lib/"
-    elseif os.istarget("macosx") then
-        IRRKLANG_LIB_DIR = "../irrklang/bin/macosx-gcc"
-    end
-    IRRKLANG_LIB_DIR = GetParam("irrklang-lib-dir") or IRRKLANG_LIB_DIR
+    IRRKLANG_INCLUDE_DIR = GetParam("irrklang-include-dir") or "../3rdParty/irrKlang-64bit-1.6.0/include"
+    IRRKLANG_LIB_DIR = "../3rdParty/irrKlang-64bit-1.6.0/bin/linux-gcc-64"
+    IRRKLANG_LINK_RPATH = "-Wl,-rpath=../3rdParty/irrKlang-64bit-1.6.0/bin/linux-gcc-64"
 end
 
 if GetParam("irrklang-pro") and os.istarget("windows") then

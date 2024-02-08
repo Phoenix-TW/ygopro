@@ -3,6 +3,19 @@ A script engine for "yu-gi-oh!" and sample gui
 
 [中文说明](https://github.com/Fluorohydride/ygopro/wiki/%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E)
 
+安裝依賴套件:
+sudo apt install -y libfreetype6-dev libevent-dev libsqlite3-dev libgl1-mesa-dev libglu-dev mono-complete premake4 liblua5.3-dev libxxf86vm-dev
+
+* liblua用5.3版本，5.2已經編譯不了新的Koishipro了
+* 編譯要用premake5(premake4也要裝)，但premake5沒有repo能裝，官網有binary能下載，請下載放至ygopro根目錄下
+* 主要更動了根目錄下的premake5.lua
+* libirrlicht跟libklang兩個套件都不需裝進系統，已下載放至3rdParty資料夾下
+* libirrklang的include另外複製了一份至根目錄供ikpmp3編譯用
+* premake5.lua內lua的路徑要修改，Ubuntu默認位置:/usr/include/lua5.3而非/usr/local/include/lua
+* 腳本寫連結時用-lua，為了不修改這個，直接創建軟連結即可
+sudo ln -s /usr/lib/x86_64-linux-gnu/liblua5.3.so /usr/lib/x86_64-linux-gnu/liblua.so
+* 註:編譯完成後的執行檔需要libirrklang.so才能執行，其他皆為靜態連結
+
 ### Keys:
 * ESC: Minimize the window.
 * A: Holding down this button will let the system stop at every timing.
