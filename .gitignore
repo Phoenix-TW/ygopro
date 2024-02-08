@@ -97,3 +97,5 @@ core*
 /patch.exe.manifest
 /patch.exe
 /diff.exe
+
+!/3rdParty/irrlicht_1.8/include/coreutil.h
